@@ -11,9 +11,9 @@ var Enemy = function(x, y) {
     this.sprite = 'images/enemy-bug.png';
 };
 
-const Enemy1 = new Enemy(-200,60);
-const Enemy2 = new Enemy(-200,143);
-const Enemy3 = new Enemy(-200,220);
+const enemy1 = new Enemy(-200,60);
+const enemy2 = new Enemy(-200,143);
+const enemy3 = new Enemy(-200,220);
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -55,22 +55,11 @@ class Player {
             ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
         };
         this.handleInput = function (e) {
-            //add conditionals for which key and update x/y
-            if (e === 'left') {
-                this.x = this.x - 101;
-            }
-            if (e === 'up') {
-                console.log('up');
-                this.y = this.y - 82;
-            }
-            if (e === 'right') {
-                console.log('right');
-                this.x = this.x + 101;
-            }
-            if (e === 'down') {
-                console.log('down');
-                this.y = this.y + 82;
-            }
+            // move player
+            (e === 'left' && this.x >= 100) ? this.x = this.x - 101 : this.x = this.x;
+            (e === 'up' && this.y >= 62) ? this.y = this.y - 82 : this.y = this.y;
+            (e === 'right' && this.x <= 304) ? this.x = this.x + 101 : this.x = this.x;
+            (e === 'down' && this.y <= 308) ? this.y = this.y + 82 : this.y = this.y;
         };
     }
 }
@@ -79,8 +68,8 @@ class Player {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-const allEnemies = [Enemy1,Enemy2,Enemy3];
-const player = new Player(203,390);
+const allEnemies = [enemy1, enemy2, enemy3];
+const player = new Player(203, 390);
 
 
 // This listens for key presses and sends the keys to your
