@@ -1,19 +1,19 @@
 // Enemies our player must avoid
-var Enemy = function(x, y, speed) {
+var Enemy = function(x, y) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
     this.x = x;
     this.y = y;
-    this.speed = speed;
+    this.speed = randomSpeed();
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
 };
 
-const Enemy1 = new Enemy(-200,60,300);
-const Enemy2 = new Enemy(-200,143,300);
-const Enemy3 = new Enemy(-200,220,300);
+const Enemy1 = new Enemy(-200,60);
+const Enemy2 = new Enemy(-200,143);
+const Enemy3 = new Enemy(-200,220);
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -23,11 +23,19 @@ Enemy.prototype.update = function(dt) {
     // all computers.
     this.x = this.x + this.speed * dt;
 
+    // reset bug to start of board with new speed
     if (this.x > 505) {
         this.x = -200;
+        this.speed = randomSpeed();
     }
-
 };
+
+/**
+ * random speed function
+ */
+function randomSpeed() {
+    return 100 + Math.floor(Math.random() * Math.floor(350));
+}
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
