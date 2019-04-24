@@ -49,11 +49,14 @@ class Player {
     constructor (x, y) {
         this.x = x;
         this.y = y;
-        this.sprite = 'images/char-princess-girl.png';
+        this.sprite = 'images/char-cat-girl.png';
         this.update = function () {};
         this.render = function () {
+            ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
         };
-        this.handleInput = function () {};
+        this.handleInput = function (k) {
+            //add conditionals for which key and update x/y
+        };
     }
 }
 
@@ -62,7 +65,7 @@ class Player {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 const allEnemies = [Enemy1,Enemy2,Enemy3];
-const player = new Player(450,450);
+const player = new Player(203,390);
 
 
 // This listens for key presses and sends the keys to your
