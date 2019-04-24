@@ -54,8 +54,23 @@ class Player {
         this.render = function () {
             ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
         };
-        this.handleInput = function (k) {
+        this.handleInput = function (e) {
             //add conditionals for which key and update x/y
+            if (e === 'left') {
+                this.x = this.x - 101;
+            }
+            if (e === 'up') {
+                console.log('up');
+                this.y = this.y - 82;
+            }
+            if (e === 'right') {
+                console.log('right');
+                this.x = this.x + 101;
+            }
+            if (e === 'down') {
+                console.log('down');
+                this.y = this.y + 82;
+            }
         };
     }
 }
@@ -71,6 +86,7 @@ const player = new Player(203,390);
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
+    e.preventDefault();
     var allowedKeys = {
         37: 'left',
         38: 'up',
