@@ -48,15 +48,15 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
+/**
+ * player class
+ */
 class Player {
     constructor (x, y) {
         this.x = x;
         this.y = y;
-        this.sprite = 'images/char-cat-girl.png';
-        this.update = function () {
+        this.sprite = 'images/char-boy.png';
+        this.update = () => {
             for (let enemy of allEnemies) {
                 if (enemy.y === player.y) {
                     if (enemy.x + 50 > player.x && enemy.x < player.x + 50) {
@@ -64,21 +64,29 @@ class Player {
                     }
                 }
             }
+            if (player.y === -20) {
+                this.success();
+            }
         };
-        this.render = function () {
+        this.render = () => {
             ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
         };
-        this.handleInput = function (e) {
+        this.handleInput = (e) => {
             // move player
-            (e === 'left' && this.x >= 100) ? this.x = this.x - 101 : this.x = this.x;
-            (e === 'up' && this.y >= 62) ? this.y = this.y - 82 : this.y = this.y;
-            (e === 'right' && this.x <= 304) ? this.x = this.x + 101 : this.x = this.x;
-            (e === 'down' && this.y <= 308) ? this.y = this.y + 82 : this.y = this.y;
+            (e === 'left' && this.x >= 100) ? this.x -= 101 : this.x = this.x;
+            (e === 'up' && this.y >= 62) ? this.y -= 82 : this.y = this.y;
+            (e === 'right' && this.x <= 304) ? this.x += 101 : this.x = this.x;
+            (e === 'down' && this.y <= 308) ? this.y += 82 : this.y = this.y;
         };
         this.reset = function resetPlayerPos() {
-            player.x = 203;
+            player.x = 202;
             player.y = 390;
         }
+        this.success = () => {
+            setTimeout(() => {
+                this.reset();
+            }, 500);
+        };
     }
 }
 
@@ -87,7 +95,7 @@ class Player {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 const allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6];
-const player = new Player(203, 390);
+const player = new Player(202, 390);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
