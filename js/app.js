@@ -14,6 +14,9 @@ var Enemy = function(x, y) {
 const enemy1 = new Enemy(-200, 62);
 const enemy2 = new Enemy(-200, 144);
 const enemy3 = new Enemy(-200, 226);
+const enemy4 = new Enemy(-200, 62);
+const enemy5 = new Enemy(-200, 144);
+const enemy6 = new Enemy(-200, 226);
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -29,6 +32,7 @@ Enemy.prototype.update = function(dt) {
         this.speed = randomSpeed();
     }
 
+    // enemy and player collision check
     player.update();
 };
 
@@ -36,7 +40,7 @@ Enemy.prototype.update = function(dt) {
  * random speed function
  */
 function randomSpeed() {
-    return 100 + Math.floor(Math.random() * Math.floor(350));
+    return 100 + Math.floor(Math.random() * Math.floor(450));
 }
 
 // Draw the enemy on the screen, required method for game
@@ -54,11 +58,9 @@ class Player {
         this.sprite = 'images/char-cat-girl.png';
         this.update = function () {
             for (let enemy of allEnemies) {
-                let roundedX = Math.round(enemy.x);
-                let roundedY = Math.round(enemy.y);
-                if (roundedY === player.y) {
-                    if (roundedX > player.x && roundedX < player.x + 171) {
-                        resetPlayerPos();
+                if (enemy.y === player.y) {
+                    if (enemy.x + 50 > player.x && enemy.x < player.x + 50) {
+                        this.reset();
                     }
                 }
             }
@@ -73,6 +75,10 @@ class Player {
             (e === 'right' && this.x <= 304) ? this.x = this.x + 101 : this.x = this.x;
             (e === 'down' && this.y <= 308) ? this.y = this.y + 82 : this.y = this.y;
         };
+        this.reset = function resetPlayerPos() {
+            player.x = 203;
+            player.y = 390;
+        }
     }
 }
 
@@ -80,16 +86,8 @@ class Player {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-const allEnemies = [enemy1, enemy2, enemy3];
+const allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6];
 const player = new Player(203, 390);
-
-/**
- * reset player position on hit
- */
-function resetPlayerPos() {
-    player.x = 203;
-    player.y = 390;
-}
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
