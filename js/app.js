@@ -29,7 +29,7 @@ Enemy.prototype.update = function(dt) {
         this.speed = randomSpeed();
     }
 
-    player.update() * dt;
+    player.update();
 };
 
 /**
@@ -57,7 +57,7 @@ class Player {
                 let roundedX = Math.round(enemy.x);
                 let roundedY = Math.round(enemy.y);
                 if (roundedY === player.y) {
-                    if (roundedX === player.x) {
+                    if (roundedX > player.x && roundedX < player.x + 171) {
                         resetPlayerPos();
                     }
                 }
