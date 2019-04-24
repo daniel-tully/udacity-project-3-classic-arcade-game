@@ -11,9 +11,9 @@ var Enemy = function(x, y) {
     this.sprite = 'images/enemy-bug.png';
 };
 
-const enemy1 = new Enemy(-200,60);
-const enemy2 = new Enemy(-200,143);
-const enemy3 = new Enemy(-200,220);
+const enemy1 = new Enemy(-200, 62);
+const enemy2 = new Enemy(-200, 144);
+const enemy3 = new Enemy(-200, 226);
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -23,11 +23,13 @@ Enemy.prototype.update = function(dt) {
     // all computers.
     this.x = this.x + this.speed * dt;
 
-    // reset bug to start of board with new speed
+    // reset bug to beginning of board with new speed
     if (this.x > 505) {
         this.x = -200;
         this.speed = randomSpeed();
     }
+
+    player.update() * dt;
 };
 
 /**
@@ -50,7 +52,17 @@ class Player {
         this.x = x;
         this.y = y;
         this.sprite = 'images/char-cat-girl.png';
-        this.update = function () {};
+        this.update = function () {
+            for (let enemy of allEnemies) {
+                let roundedX = Math.round(enemy.x);
+                let roundedY = Math.round(enemy.y);
+                if (roundedY === player.y) {
+                    if (roundedX === player.x) {
+                        resetPlayerPos();
+                    }
+                }
+            }
+        };
         this.render = function () {
             ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
         };
@@ -71,6 +83,13 @@ class Player {
 const allEnemies = [enemy1, enemy2, enemy3];
 const player = new Player(203, 390);
 
+/**
+ * reset player position on hit
+ */
+function resetPlayerPos() {
+    player.x = 203;
+    player.y = 390;
+}
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
