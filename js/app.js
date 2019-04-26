@@ -51,13 +51,13 @@ class Player {
         this.sprite = 'images/char-boy.png';
         this.update = () => {
             for (let enemy of allEnemies) {
-                if (enemy.y === player.y) {
-                    if (enemy.x + 50 > player.x && enemy.x < player.x + 50) {
+                if (enemy.y === this.y) {
+                    if (enemy.x + 50 > this.x && enemy.x < this.x + 50) {
                         this.reset();
                     }
                 }
             }
-            if (player.y === -20) {
+            if (this.y === 62) {
                 this.success();
             }
         };
@@ -72,13 +72,22 @@ class Player {
             (e === 'down' && this.y <= 308) ? this.y += 82 : this.y;
         };
         this.reset = function resetPlayerPos() {
-            player.x = 202;
-            player.y = 390;
+            this.x = 202;
+            this.y = 390;
         }
         this.success = () => {
+            const resetBtn = document.querySelector('.restart-btn');
             setTimeout(() => {
+                // load time into success modal
+                const successContainer = document.querySelector('.modal-container');
+                successContainer.classList.replace('modal-closed', 'modal-open');
+            }, 1000);
+
+            //restart game
+            resetBtn.addEventListener('click', () => {
                 this.reset();
-            }, 500);
+                successContainer.classList.replace('modal-open', 'modal-closed');
+            });
         };
     }
 }
@@ -96,7 +105,6 @@ const allEnemies = (() => {
     const enemy6 = new Enemy(-200, 226);
 
     return [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6];
-
 })();
 
 // instantiate player
