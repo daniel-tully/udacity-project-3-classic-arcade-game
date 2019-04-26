@@ -11,13 +11,6 @@ var Enemy = function(x, y) {
     this.sprite = 'images/enemy-bug.png';
 };
 
-const enemy1 = new Enemy(-200, 62);
-const enemy2 = new Enemy(-200, 144);
-const enemy3 = new Enemy(-200, 226);
-const enemy4 = new Enemy(-200, 62);
-const enemy5 = new Enemy(-200, 144);
-const enemy6 = new Enemy(-200, 226);
-
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
@@ -73,7 +66,7 @@ class Player {
         };
         this.handleInput = (e) => {
             // move player
-            (e === 'left' && this.x >= 100) ? this.x -= 101 : this.x = this.x;
+            (e === 'left' && this.x >= 100) ? this.x -= 101 : this.x;
             (e === 'up' && this.y >= 62) ? this.y -= 82 : this.y = this.y;
             (e === 'right' && this.x <= 304) ? this.x += 101 : this.x = this.x;
             (e === 'down' && this.y <= 308) ? this.y += 82 : this.y = this.y;
@@ -94,8 +87,22 @@ class Player {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-const allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6];
-const player = new Player(202, 390);
+const allEnemies = (() => {
+    const enemy1 = new Enemy(-200, 62);
+    const enemy2 = new Enemy(-200, 144);
+    const enemy3 = new Enemy(-200, 226);
+    const enemy4 = new Enemy(-200, 62);
+    const enemy5 = new Enemy(-200, 144);
+    const enemy6 = new Enemy(-200, 226);
+
+    return [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6];
+
+})();
+
+// instantiate player
+const player = (() => {
+    return new Player(202, 390);
+})();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
