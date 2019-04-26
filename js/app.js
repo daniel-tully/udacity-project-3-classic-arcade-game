@@ -67,9 +67,9 @@ class Player {
         this.handleInput = (e) => {
             // move player
             (e === 'left' && this.x >= 100) ? this.x -= 101 : this.x;
-            (e === 'up' && this.y >= 62) ? this.y -= 82 : this.y = this.y;
-            (e === 'right' && this.x <= 304) ? this.x += 101 : this.x = this.x;
-            (e === 'down' && this.y <= 308) ? this.y += 82 : this.y = this.y;
+            (e === 'up' && this.y >= 62) ? this.y -= 82 : this.y;
+            (e === 'right' && this.x <= 304) ? this.x += 101 : this.x;
+            (e === 'down' && this.y <= 308) ? this.y += 82 : this.y;
         };
         this.reset = function resetPlayerPos() {
             player.x = 202;
