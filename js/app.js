@@ -57,9 +57,6 @@ class Player {
                     }
                 }
             }
-            if (this.y === 62) {
-                this.success();
-            }
         };
         this.render = () => {
             ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
@@ -70,6 +67,11 @@ class Player {
             (e === 'up' && this.y >= 62) ? this.y -= 82 : this.y;
             (e === 'right' && this.x <= 304) ? this.x += 101 : this.x;
             (e === 'down' && this.y <= 308) ? this.y += 82 : this.y;
+
+            // player reaches water
+            if (this.y === -20) {
+                this.success();
+            }
         };
         this.reset = function resetPlayerPos() {
             this.x = 202;
@@ -77,9 +79,10 @@ class Player {
         }
         this.success = () => {
             const resetBtn = document.querySelector('.restart-btn');
+            const successContainer = document.querySelector('.modal-container');
+
             setTimeout(() => {
                 // load time into success modal
-                const successContainer = document.querySelector('.modal-container');
                 successContainer.classList.replace('modal-closed', 'modal-open');
             }, 1000);
 
