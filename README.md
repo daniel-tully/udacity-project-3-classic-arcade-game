@@ -2,19 +2,19 @@
 
 ## Table of Contents
 
-- [Instructions](#instructions)
-- [Contributing](#contributing)
+- How to run the app
+- How to play the game
 
-## Instructions
+## How to run the app
 
-Use this [rubric](https://review.udacity.com/#!/rubrics/15/view) for self-checking your submission.
+1. Open the index.html file in your preferred internet browser on a desktop computer.
 
-Make sure the functions you write are **object-oriented** - either class functions (like `Player` and `Enemy`) or class prototype functions such as `Enemy.prototype.checkCollisions`. Also make sure that the keyword `this` is used appropriately within your class and class prototype functions to refer to the object the function is called upon.
+## How to play the game
 
-Your **README.md** file should be updated with instructions on both how to 1. Run and 2. Play your arcade game.
+Use the keyboard arrows to move the player character around the game board. The aim of the game is to reach the water without being hit by one of the enemy bugs.
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+Once your player character reaches the water, a success message will appear. You can then restart the game by clicking the 'Play again' button.
 
-## Contributing
+## Dependancies
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+- No current dependancies

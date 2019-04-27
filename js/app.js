@@ -23,7 +23,7 @@ Enemy.prototype.update = function(dt) {
     if (this.x > 505) {
         this.x = -200;
         this.speed = randomSpeed();
-    }
+    };
 
     // enemy and player collision check
     player.update();
@@ -71,20 +71,20 @@ class Player {
             // player reaches water
             if (this.y === -20) {
                 this.success();
-            }
+            };
         };
         this.reset = function resetPlayerPos() {
             this.x = 202;
             this.y = 390;
-        }
+        };
         this.success = () => {
             const resetBtn = document.querySelector('.restart-btn');
             const successContainer = document.querySelector('.modal-container');
 
+            // open success container
             setTimeout(() => {
-                // load time into success modal
                 successContainer.classList.replace('modal-closed', 'modal-open');
-            }, 1000);
+            }, 400);
 
             //restart game
             resetBtn.addEventListener('click', () => {
@@ -92,13 +92,13 @@ class Player {
                 successContainer.classList.replace('modal-open', 'modal-closed');
             });
         };
-    }
-}
+    };
+};
 
 
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
+/**
+ * instantiate - enemies
+ */
 const allEnemies = (() => {
     const enemy1 = new Enemy(-200, 62);
     const enemy2 = new Enemy(-200, 144);
@@ -110,7 +110,9 @@ const allEnemies = (() => {
     return [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6];
 })();
 
-// instantiate player
+/**
+ * instantiate - player
+ */
 const player = (() => {
     return new Player(202, 390);
 })();
