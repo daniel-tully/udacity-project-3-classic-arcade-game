@@ -24,9 +24,6 @@ Enemy.prototype.update = function(dt) {
         this.x = -200;
         this.speed = randomSpeed();
     };
-
-    // enemy and player collision check
-    player.update();
 };
 
 /**
