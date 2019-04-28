@@ -34,12 +34,6 @@ body {
     text-align: center;
 }
 
-/* containers */
-.container {
-    max-width: 700px;
-    margin: 0 auto;
-}
-
 /* buttons */
 .btn {
     padding: 12px 15px;
@@ -50,27 +44,6 @@ body {
 
 .btn:hover {
     cursor: pointer;
-}
-
-/* flexbox */
-.flex {
-    display: flex;
-}
-
-.justify {
-    justify-content: space-between;
-}
-
-.justify-center {
-    justify-content: center;
-}
-
-.align {
-    align-items: center;
-}
-
-.wrap {
-    flex-wrap: wrap;
 }
 
 /* modals */

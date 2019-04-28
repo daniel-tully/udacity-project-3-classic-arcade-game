@@ -54,9 +54,9 @@ class Player {
                 if (enemy.y === this.y) {
                     if (enemy.x + 50 > this.x && enemy.x < this.x + 50) {
                         this.reset();
-                    }
-                }
-            }
+                    };
+                };
+            };
         };
         this.render = () => {
             ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
@@ -70,31 +70,15 @@ class Player {
 
             // player reaches water
             if (this.y === -20) {
-                this.success();
+                success();
             };
         };
         this.reset = function resetPlayerPos() {
             this.x = 202;
             this.y = 390;
         };
-        this.success = () => {
-            const resetBtn = document.querySelector('.restart-btn');
-            const successContainer = document.querySelector('.modal-container');
-
-            // open success container
-            setTimeout(() => {
-                successContainer.classList.replace('modal-closed', 'modal-open');
-            }, 400);
-
-            //restart game
-            resetBtn.addEventListener('click', () => {
-                this.reset();
-                successContainer.classList.replace('modal-open', 'modal-closed');
-            });
-        };
     };
 };
-
 
 /**
  * instantiate - enemies
@@ -117,8 +101,11 @@ const player = (() => {
     return new Player(202, 390);
 })();
 
-// This listens for key presses and sends the keys to your
-// Player.handleInput() method. You don't need to modify this.
+/**
+ * keyboard event
+ * This listens for key presses and sends the keys to your
+ * Player.handleInput() method. You don't need to modify this.
+ */
 document.addEventListener('keyup', function(e) {
     e.preventDefault();
     var allowedKeys = {
@@ -130,3 +117,22 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+/**
+ * success modal with restart button
+ */
+const success = () => {
+    const resetBtn = document.querySelector('.restart-btn');
+    const successContainer = document.querySelector('.modal-container');
+
+    // open success container
+    setTimeout(() => {
+        successContainer.classList.replace('modal-closed', 'modal-open');
+    }, 400);
+
+    //restart game
+    resetBtn.addEventListener('click', () => {
+        player.reset();
+        successContainer.classList.replace('modal-open', 'modal-closed');
+    });
+};
